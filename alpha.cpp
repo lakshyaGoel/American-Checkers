@@ -22,11 +22,6 @@ int alphabeta(struct board **B,struct ball *P,int depth,int alpha,int beta,int t
 	                BD[j][k] = B[j][k];
 	        }
 	}
-//	cout << "depth = " << depth << endl;
-/*	if(depth == 0){
-		return evaluation(BD);
-	}
-*/
 	if(turn == 0)
 		turn = 1;
 	else if(turn == 1)
@@ -46,14 +41,7 @@ int alphabeta(struct board **B,struct ball *P,int depth,int alpha,int beta,int t
 	if(depth == 0){
 		return evaluation(BD);
 	}
-/*	cout << "possible moves" << endl;
-	for(int i = 0 ; i <list.size() ; i++){
-		for(int j = 0 ; j < list[i].size() ; j++){
-			cout << list[i][j] << " ";
-		}
-		cout << endl;
-	}
-*/
+
 	for(int i = 0 ; i < n ; i++){
 		domove(list[i],BD,BL);
 		value = -alphabeta(BD,BL,depth-1,-beta,-localalpha,turn);

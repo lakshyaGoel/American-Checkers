@@ -31,6 +31,5 @@ void domove(vector<int> l,struct board **T,struct ball *C);
 void display(struct board **B);
 int evaluation(struct board **B);
 void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,int turn);
-void daa();
 
 void checkWin();

@@ -7,7 +7,7 @@
 struct ball *P;
 struct board **B;
 
-vector <int> a;	// What is this????
+vector <int> a;
 void Timer (int x);
 
 using namespace std;
@@ -16,7 +16,7 @@ int chance = 1;
 void play()
 {	
 	int x1;
-//	vector<int> a;
+
 	vector < vector <int> > list;
 	if(chance == 1){
 		int fromX, fromY, toX, toY;
@@ -29,56 +29,46 @@ void play()
 		domove(a,B,P);
 		a.clear();
 		cout << endl;
-	}
-
-	getBoardStatus();
-	
-	// else if(chance == 0){
-	// 	makemovelist(P,B,list,1);
-	// 	struct board **T;
-	// 	struct ball *C;
-	// 	vector<int> strength;
-	// 	int Pw;
-	// 	for(int i = 0 ; i < list.size() ; i++){
-	// 		T = new struct board*[8];
-	//         	C = new struct ball[24];
+	}else if(chance == 0){
+		makemovelist(P,B,list,chance);
+		struct board **T;
+		struct ball *C;
+		vector<int> strength;
+		int Pw;
+		for(int i = 0 ; i < list.size() ; i++){
+			T = new struct board*[8];
+	        	C = new struct ball[24];
 		
-	// 		for(int j = 0 ; j < 8 ; j++){
-	// 			T[j] = new struct board[8];
-	// 		}
-	// 		for(int j = 0 ; j < 24 ; j++){
-	// 			C[j] = P[j];
-	// 		}
+			for(int j = 0 ; j < 8 ; j++){
+				T[j] = new struct board[8];
+			}
+			for(int j = 0 ; j < 24 ; j++){
+				C[j] = P[j];
+			}
 			
-	// 		for(int j = 0 ; j < 8 ; j++){
-	// 			for(int k = 0 ; k < 8 ; k++){
-	// 				T[j][k] = B[j][k];
-	// 			}
-	// 		}
+			for(int j = 0 ; j < 8 ; j++){
+				for(int k = 0 ; k < 8 ; k++){
+					T[j][k] = B[j][k];
+				}
+			}
 	
-	// 		domove(list[i],T,C); 
-	// 		Pw = alPhabeta(T, C, 4, INT_MIN, INT_MAX, 1);
-	// 		strength.Push_back(Pw);
-	// 	}
-	
-	
-	// 	int index;
-	// 	int max = INT_MIN;
-	// 	for(int i = 0 ; i < strength.size() ;i++){
-	// 		if(max < strength[i]){
-	// 			max = strength[i];
-	// 			index = i;
-	// 		}
-	// 	}
-	// 	domove(list[index],B,P);
-	// 	a.clear();
-	// 	for(int i = 0 ; i <list[index].size() ; i++){
-	// 		a.Push_back(list[index][i]);
-	// 	}
-	//         send_data = mainget(a);							
- 	// 	send(sock,send_data,strlen(send_data), 0); 
-	// 	list.clear();
-	// }
+			domove(list[i],T,C); 
+			Pw = alphabeta(T, C, 4, INT_MIN, INT_MAX, 1);
+			strength.push_back(Pw);
+		}
+		
+		int index;
+		int max = INT_MIN;
+		for(int i = 0 ; i < strength.size() ;i++){
+			if(max < strength[i]){
+				max = strength[i];
+				index = i;
+			}
+		}
+		domove(list[index],B,P);
+		a.clear();
+		list.clear();
+	}
 	if(chance == 0)
 		chance = 1;
 	else if(chance == 1)
@@ -95,11 +85,13 @@ void checkWin() {
 		if(P[i].col == 'w')
 			c2++;
 	}
-	if(c1 == 0){	
+	if(c1 == 0){
+		getBoardStatus();	
 		cout << "blue wins" << endl;
 		exit (0);
 	}
 	if(c2 == 0){
+		getBoardStatus();
 		cout << "red wins" << endl;
 		exit(0);
 	}
@@ -109,14 +101,15 @@ void getBoardStatus(){
 	for(int i = 0; i < 8; i++){
 		for(int j = 0; j < 8; j++){
 			if (B[i][j].c == 'n'){
-				cout << "_" << " ";
+				cout << "_" << "\t ";
 			}
 			else {
-				cout << B[i][j].c << " ";
+				cout << B[i][j].c << "\t ";
 			} 
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 
 int main(int argc,char **argv) {
@@ -174,8 +167,11 @@ int main(int argc,char **argv) {
 		B[6][k].c = 'w';
 		i++;
 	}
-
-	getBoardStatus();
-	play();
+	while(1){
+		getBoardStatus();
+		play();
+		checkWin();
+	}
+	
 	return 0;
 }
