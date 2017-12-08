@@ -20,6 +20,7 @@ void calc()
 	vector < vector <int> > list;
 	if(chance == 1){
 		int fromX, fromY, toX, toY;
+		cout << "Input in row column - row column" << endl;
 		cin >> fromX >> fromY >> toX >> toY ;
 		a.push_back(fromX);
 		a.push_back(fromY);
@@ -29,6 +30,8 @@ void calc()
 		a.clear();
 		cout << endl;
 	}
+
+	getBoardStatus();
 	
 	// else if(chance == 0){
 	// 	makemovelist(P,B,list,1);
@@ -112,7 +115,12 @@ void getBoardStatus(){
 
 	for(i = 0; i < 8; i++){
 		for(j = 0; j < 8; j++){
-			cout << B[i][j].c << " ";
+			if (B[i][j].c == 'n'){
+				cout << "_" << " ";
+			}
+			else {
+				cout << B[i][j].c << " ";
+			} 
 		}
 		cout << endl;
 	}

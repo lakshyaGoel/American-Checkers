@@ -23,6 +23,7 @@ struct board{
 	char c;
 };
 
+void getBoardStatus();
 void moves(struct ball A,vector <int> &temp,struct board **);
 void simplemove(struct ball A, vector< vector<int> > &list,struct board **B);
 int alphabeta(struct board **B,struct ball *P,int depth,int alpha,int beta,int);
