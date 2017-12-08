@@ -1,5 +1,5 @@
 #include "header.h"
-#include "imageloader.h"
+// #include "imageloader.h"
 
 
 
@@ -22,7 +22,7 @@ void simplemove(struct ball A, vector< vector<int> > &list,struct board **B){
 //	struct ball G;
 //	G = A;
 	
-	cout << "yeah....yeah....." << endl;
+	// cout << "yeah....yeah....." << endl;
 	if(A.king == 1){
 		x1 = A.x - 1;
 		y1 = A.y - 1;
@@ -54,7 +54,7 @@ void simplemove(struct ball A, vector< vector<int> > &list,struct board **B){
 	}
 	x1 = A.x - 1;
 	y1 = A.y + 1;
-	cout << "hello world" << endl;
+	// cout << "hello world" << endl;
 	if(x1 >=0 && y1 <= 7 && x1 <= 7 && y1 >= 0){
 		if(B[y1][x1].c == 'n'){
 			temp.push_back(A.y);
@@ -68,7 +68,7 @@ void simplemove(struct ball A, vector< vector<int> > &list,struct board **B){
 
 	x1 = A.x + 1;
 	y1 = A.y + 1;
-	cout << "bas bahut ho gaya" << endl;
+	// cout << "bas bahut ho gaya" << endl;
 	if(x1 >=0 && y1 <= 7 && x1 <= 7 && y1 >= 0){
 		if(B[y1][x1].c == 'n'){
 			temp.push_back(A.y);
