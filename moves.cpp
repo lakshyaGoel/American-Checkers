@@ -260,8 +260,6 @@ void moves(struct ball A,vector<int> &temp,struct board **B){
 	}
 }
 
-
-
 void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,int turn){
 	vector<int> temp;
 	struct board **T ;
