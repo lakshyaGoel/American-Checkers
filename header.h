@@ -2,28 +2,14 @@
 #include <vector>
 #include <math.h>
 #include <limits.h>
-
-#include <GL/glut.h>
-#include <GL/gl.h>
-
 #include<string>
-
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <netdb.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
-//#include "client.h"
-
-
-
 
 #define FOR(i,n) for(int i=0;i<n;i++)
-
 
 using namespace std;
 
@@ -36,8 +22,6 @@ struct ball{
 struct board{
 	char c;
 };
-
-
 
 void moves(struct ball A,vector <int> &temp,struct board **);
 void simplemove(struct ball A, vector< vector<int> > &list,struct board **B);
