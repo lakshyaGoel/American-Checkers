@@ -7,49 +7,30 @@
 struct ball *P;
 struct board **B;
 
-vector <int> a;	// What is this????
+vector <int> a;
 void Timer (int x);
 
-using namesPace std;
-int angle = 90;
+using namespace std;
 int chance = 1;
 
-
-void board() {
-	// ??????
-}
-
-void movement()
-{
-
-}
-
-void drawScene() 
-{
-	glutTimerFunc (1000, Timer, 1);
-}
-
-void calc()
+void play()
 {	
 	int x1;
-//	vector<int> a;
+
 	vector < vector <int> > list;
 	if(chance == 1){
-		a.clear();
-		bytes_recieved = recv(sock,recv_data,1024,0);
-       	 	recv_data[bytes_recieved] = '\0';
-		a = mainsend(recv_data);								
-		if (strcmP(recv_data , "q") == 0 || strcmP(recv_data , "Q") == 0){
-        		close(sock);
-  		}
-
+		int fromX, fromY, toX, toY;
+		cout << "Input in row column - row column" << endl;
+		cin >> fromX >> fromY >> toX >> toY ;
+		a.push_back(fromX);
+		a.push_back(fromY);
+		a.push_back(toX);
+		a.push_back(toY);
 		domove(a,B,P);
 		a.clear();
 		cout << endl;
-	}
-	
-	else if(chance == 0){
-		makemovelist(P,B,list,1);
+	}else if(chance == 0){
+		makemovelist(P,B,list,chance);
 		struct board **T;
 		struct ball *C;
 		vector<int> strength;
@@ -72,11 +53,10 @@ void calc()
 			}
 	
 			domove(list[i],T,C); 
-			Pw = alPhabeta(T, C, 4, INT_MIN, INT_MAX, 1);
-			strength.Push_back(Pw);
+			Pw = alphabeta(T, C, 4, INT_MIN, INT_MAX, 1);
+			strength.push_back(Pw);
 		}
-	
-	
+		
 		int index;
 		int max = INT_MIN;
 		for(int i = 0 ; i < strength.size() ;i++){
@@ -87,11 +67,6 @@ void calc()
 		}
 		domove(list[index],B,P);
 		a.clear();
-		for(int i = 0 ; i <list[index].size() ; i++){
-			a.Push_back(list[index][i]);
-		}
-	        send_data = mainget(a);							
- 		send(sock,send_data,strlen(send_data), 0); 
 		list.clear();
 	}
 	if(chance == 0)
@@ -101,9 +76,7 @@ void calc()
 
 }
 
-// If win ???
-void Timer (int x)
-{
+void checkWin() {
 	int c1 = 0;
 	int c2 = 0;	
 	for(int i = 0 ; i < 24 ; i++){
@@ -112,18 +85,31 @@ void Timer (int x)
 		if(P[i].col == 'w')
 			c2++;
 	}
-	if(c1 == 0){	
+	if(c1 == 0){
+		getBoardStatus();	
 		cout << "blue wins" << endl;
-//		return;
-		exit (1);
+		exit (0);
 	}
 	if(c2 == 0){
+		getBoardStatus();
 		cout << "red wins" << endl;
-//		return;
-		exit(1);
+		exit(0);
 	}
-	calc();
-	drawScene();	
+}
+
+void getBoardStatus(){
+	for(int i = 0; i < 8; i++){
+		for(int j = 0; j < 8; j++){
+			if (B[i][j].c == 'n'){
+				cout << "_" << "\t ";
+			}
+			else {
+				cout << B[i][j].c << "\t ";
+			} 
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
 
 int main(int argc,char **argv) {
@@ -181,17 +167,11 @@ int main(int argc,char **argv) {
 		B[6][k].c = 'w';
 		i++;
 	}
-
-	Timer // Call to check
+	while(1){
+		getBoardStatus();
+		play();
+		checkWin();
+	}
 	
 	return 0;
 }
-
-
-
-
-
-
-
-
-

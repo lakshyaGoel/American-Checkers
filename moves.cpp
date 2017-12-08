@@ -1,18 +1,15 @@
 #include "header.h"
-#include "imageloader.h"
-#include <vector>
 
 vector<vector<int> > v;
 
-
+// All multiple moves for ball A for boad B
 void moves(struct ball A,vector<int> &temp,struct board **B){
 	int x1,y1;
 	struct board **T = new struct board*[8];
-
+	// Copy
 	for(int j = 0 ; j < 8 ; j++){
 		T[j] = new struct board[8];
- 	 }
-
+ 	}
 	for(int j = 0 ; j < 8 ; j++){
 		for(int k = 0 ; k < 8 ; k++){
 			T[j][k] = B[j][k];
@@ -38,7 +35,7 @@ void moves(struct ball A,vector<int> &temp,struct board **B){
 					T[y1][x1].c = 'n';
 					T[y1-1][x1+1].c = 'b';
 					moves(G,temp,T);
-                                        v.push_back(temp);
+                    v.push_back(temp);
 					temp.clear();
 				}
 			}
@@ -62,9 +59,9 @@ void moves(struct ball A,vector<int> &temp,struct board **B){
 					}
 				}
 
-                                T[A.y][A.x].c = 'n';
-                                T[y1][x1].c = 'n';
-                                T[y1+1][x1+1].c = 'b';
+                T[A.y][A.x].c = 'n';
+                T[y1][x1].c = 'n';
+                T[y1+1][x1+1].c = 'b';
 				G.x = x1 + 1;
 				G.y = y1 + 1;
 				if(y1+1 == 7 && A.king != 1){
@@ -72,7 +69,7 @@ void moves(struct ball A,vector<int> &temp,struct board **B){
 					temp.clear();
 				}
 				else{
-	                                moves(G,temp,T);
+	                moves(G,temp,T);
 					v.push_back(temp);	
 					temp.clear();
 				}	
@@ -121,9 +118,9 @@ void moves(struct ball A,vector<int> &temp,struct board **B){
 					}
 				}
 
-        	                T[A.y][A.x].c = 'n';
-       	                        T[y1][x1].c = 'n';
-       	                        T[y1+1][x1-1].c = 'b';
+        	    T[A.y][A.x].c = 'n';
+       	        T[y1][x1].c = 'n';
+       	        T[y1+1][x1-1].c = 'b';
 				G.x = x1 - 1;
 				G.y = y1 + 1;
 				if(y1+1 == 7 && A.king != 1){
@@ -131,7 +128,7 @@ void moves(struct ball A,vector<int> &temp,struct board **B){
 					temp.clear();
 				}
 				else{
-       	     	                   moves(G,temp,T); 
+				   moves(G,temp,T); 
 				   v.push_back(temp);
 				   temp.clear();
 				}
@@ -263,8 +260,6 @@ void moves(struct ball A,vector<int> &temp,struct board **B){
 	}
 }
 
-
-
 void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,int turn){
 	vector<int> temp;
 	struct board **T ;
@@ -275,19 +270,14 @@ void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,in
 	for(int i = 0 ; i < 24 ; i++){
 		P[i] = BL[i];
 	}
-//	vector< <vector<int> > l;
-
-        W = new struct board*[8];
-        for(int j = 0 ; j < 8 ; j++){
-                W[j] = new struct board[8];
+	
+	W = new struct board *[8];
+	for(int j = 0 ; j < 8 ; j++){
+		W[j] = new struct board[8];
 	}
 
 	if(turn == 0){
-/*		W = new struct board*[8];
-	        for(int j = 0 ; j < 8 ; j++){
-        	        W[j] = new struct board[8];
-		}
-*/	
+		// Inverting board for passing in moves
 		for(int i = 0 ; i < 8 ; i++){
 			for(int j = 0 ; j < 8 ; j++){
 				W[i][j] = D[7-i][7-j];
@@ -297,8 +287,6 @@ void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,in
 					W[i][j].c = 'b';
 			}
 		}
-//		cout << endl;
-//		display(W);
 		for(int i = 0 ; i < 24 ; i++){
 			if(P[i].col != 'n'){
 				P[i].x = 7 - P[i].x;
@@ -311,8 +299,9 @@ void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,in
 		}
 	}
 	else if(turn == 1){
+		// Copy
 		for(int i = 0 ; i < 8 ; i++){
-			for(int j = 0 ; j <8 ; j++){
+			for(int j = 0 ; j < 8 ; j++){
 				W[i][j] = D[i][j];
 			}
 		}
@@ -320,10 +309,10 @@ void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,in
 
 	for(int i = 0 ; i < 24   ; i++){
 		if(P[i].col == 'b'){
-		        T = new struct board*[8];
+		    T = new struct board*[8];
 			for(int j = 0 ; j < 8 ; j++){
-		                T[j] = new struct board[8];
-		        }
+		        T[j] = new struct board[8];
+		    }
 			for(int j = 0 ; j < 8 ; j++){
 				for(int k = 0 ; k < 8 ; k++){
 					T[j][k] = W[j][k];
@@ -340,6 +329,7 @@ void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,in
 					temp.push_back(v[j][0]);
 					temp.push_back(v[j][1]);
 				}
+				// Make row col pair
 				for(int k = 2 ; k < v[j].size() ; k = k+4){
 					temp.push_back(v[j][k]);
 					temp.push_back(v[j][k+1]);
@@ -347,19 +337,8 @@ void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,in
 				if(temp.size() != 0)
 					l.push_back(temp);
 				temp.clear();
-			}
-			
-//			cout << "L is" << endl;
+			}		
 			if(l.size() != 0){
-//				cout << "not empty" << endl;
-/*				for(int j = 0 ; j < l.size() ; j++){
-					for(int k = 0 ; k < l[j].size() ; k++){
-						cout << l[j][k] << " ";
-					}
-					cout << endl;
-				}
-				cout <<  "lsize " << l.size() << endl; 
-*/
 				for(int j = 0 ; j < l[0].size() ; j++){
 					temp.push_back(l[0][j]);
 				}
@@ -390,12 +369,7 @@ void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,in
 				}
 			}
 			v.clear();
-/*			if(list.size() == 0){
-       	                        temp.clear();
-                                simplemove(T1,list,T);
-				cout << "empty" << endl;
-			}
-*/		}
+		}
 	}
 	if(list.size() == 0){
 		for(int i = 0 ; i < 24 ; i++){

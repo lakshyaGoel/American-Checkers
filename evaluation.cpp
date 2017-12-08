@@ -1,6 +1,4 @@
 #include "header.h"
-#include "imageloader.h"
-
 
 int evaluation(struct board **B){
 	
