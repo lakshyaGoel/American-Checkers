@@ -32,11 +32,6 @@ int evaluation(struct board **B);
 void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,int turn);
 void daa();
 
-void board();
-void movement(struct ball *A);
-void drawScene(); 
-
-void client() ;
 char * mainget(vector<int>);
 vector<int> mainsend(char * r);
 
