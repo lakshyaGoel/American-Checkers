@@ -1,5 +1,4 @@
 #include "header.h"
-#include "imageloader.h"
 
 int alphabeta(struct board **B,struct ball *P,int depth,int alpha,int beta,int turn){
 	int n,value;

@@ -2,7 +2,7 @@
 #include <vector>
 #include <math.h>
 #include <limits.h>
-#include<string>
+#include <string>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -33,8 +33,4 @@ int evaluation(struct board **B);
 void makemovelist(struct ball *BL,struct board **D,vector<vector<int> > &list,int turn);
 void daa();
 
-char * mainget(vector<int>);
-vector<int> mainsend(char * r);
-
-
-
+void checkWin();

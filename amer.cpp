@@ -1,5 +1,4 @@
 #include "header.h"
-#include "imageloader.h"
 		
 void daa()
 {

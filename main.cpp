@@ -13,7 +13,7 @@ void Timer (int x);
 using namespace std;
 int chance = 1;
 
-void calc()
+void play()
 {	
 	int x1;
 //	vector<int> a;
@@ -86,35 +86,28 @@ void calc()
 
 }
 
-// If win ???
-// void Timer (int x)
-// {
-// 	int c1 = 0;
-// 	int c2 = 0;	
-// 	for(int i = 0 ; i < 24 ; i++){
-// 		if(P[i].col == 'b')
-// 			c1++;
-// 		if(P[i].col == 'w')
-// 			c2++;
-// 	}
-// 	if(c1 == 0){	
-// 		cout << "blue wins" << endl;
-// //		return;
-// 		exit (1);
-// 	}
-// 	if(c2 == 0){
-// 		cout << "red wins" << endl;
-// //		return;
-// 		exit(1);
-// 	}
-// 	calc();
-// 	drawScene();	
-// }
-void getBoardStatus(){
-	int i, j;
+void checkWin() {
+	int c1 = 0;
+	int c2 = 0;	
+	for(int i = 0 ; i < 24 ; i++){
+		if(P[i].col == 'b')
+			c1++;
+		if(P[i].col == 'w')
+			c2++;
+	}
+	if(c1 == 0){	
+		cout << "blue wins" << endl;
+		exit (0);
+	}
+	if(c2 == 0){
+		cout << "red wins" << endl;
+		exit(0);
+	}
+}
 
-	for(i = 0; i < 8; i++){
-		for(j = 0; j < 8; j++){
+void getBoardStatus(){
+	for(int i = 0; i < 8; i++){
+		for(int j = 0; j < 8; j++){
 			if (B[i][j].c == 'n'){
 				cout << "_" << " ";
 			}
@@ -183,15 +176,6 @@ int main(int argc,char **argv) {
 	}
 
 	getBoardStatus();
-	calc();
+	play();
 	return 0;
 }
-
-
-
-
-
-
-
-
-
