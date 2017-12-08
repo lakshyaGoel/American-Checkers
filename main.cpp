@@ -11,95 +11,77 @@ vector <int> a;	// What is this????
 void Timer (int x);
 
 using namespace std;
-int angle = 90;
 int chance = 1;
 
-
-void board() {
-	// ??????
-}
-
-void movement()
-{
-
-}
-
-void drawScene() 
-{
-	//glutTimerFunc (1000, Timer, 1);
-}
-
-// void calc()
-// {	
-// 	int x1;
-// //	vector<int> a;
-// 	vector < vector <int> > list;
-// 	if(chance == 1){
-// 		a.clear();
-// 		bytes_recieved = recv(sock,recv_data,1024,0);
-//        	 	recv_data[bytes_recieved] = '\0';
-// 		a = mainsend(recv_data);								
-// 		if (strcmP(recv_data , "q") == 0 || strcmP(recv_data , "Q") == 0){
-//         		close(sock);
-//   		}
-
-// 		domove(a,B,P);
-// 		a.clear();
-// 		cout << endl;
-// 	}
+void calc()
+{	
+	int x1;
+//	vector<int> a;
+	vector < vector <int> > list;
+	if(chance == 1){
+		int fromX, fromY, toX, toY;
+		cin >> fromX >> fromY >> toX >> toY ;
+		a.push_back(fromX);
+		a.push_back(fromY);
+		a.push_back(toX);
+		a.push_back(toY);
+		domove(a,B,P);
+		a.clear();
+		cout << endl;
+	}
 	
-// 	else if(chance == 0){
-// 		makemovelist(P,B,list,1);
-// 		struct board **T;
-// 		struct ball *C;
-// 		vector<int> strength;
-// 		int Pw;
-// 		for(int i = 0 ; i < list.size() ; i++){
-// 			T = new struct board*[8];
-// 	        	C = new struct ball[24];
+	// else if(chance == 0){
+	// 	makemovelist(P,B,list,1);
+	// 	struct board **T;
+	// 	struct ball *C;
+	// 	vector<int> strength;
+	// 	int Pw;
+	// 	for(int i = 0 ; i < list.size() ; i++){
+	// 		T = new struct board*[8];
+	//         	C = new struct ball[24];
 		
-// 			for(int j = 0 ; j < 8 ; j++){
-// 				T[j] = new struct board[8];
-// 			}
-// 			for(int j = 0 ; j < 24 ; j++){
-// 				C[j] = P[j];
-// 			}
+	// 		for(int j = 0 ; j < 8 ; j++){
+	// 			T[j] = new struct board[8];
+	// 		}
+	// 		for(int j = 0 ; j < 24 ; j++){
+	// 			C[j] = P[j];
+	// 		}
 			
-// 			for(int j = 0 ; j < 8 ; j++){
-// 				for(int k = 0 ; k < 8 ; k++){
-// 					T[j][k] = B[j][k];
-// 				}
-// 			}
+	// 		for(int j = 0 ; j < 8 ; j++){
+	// 			for(int k = 0 ; k < 8 ; k++){
+	// 				T[j][k] = B[j][k];
+	// 			}
+	// 		}
 	
-// 			domove(list[i],T,C); 
-// 			Pw = alPhabeta(T, C, 4, INT_MIN, INT_MAX, 1);
-// 			strength.Push_back(Pw);
-// 		}
+	// 		domove(list[i],T,C); 
+	// 		Pw = alPhabeta(T, C, 4, INT_MIN, INT_MAX, 1);
+	// 		strength.Push_back(Pw);
+	// 	}
 	
 	
-// 		int index;
-// 		int max = INT_MIN;
-// 		for(int i = 0 ; i < strength.size() ;i++){
-// 			if(max < strength[i]){
-// 				max = strength[i];
-// 				index = i;
-// 			}
-// 		}
-// 		domove(list[index],B,P);
-// 		a.clear();
-// 		for(int i = 0 ; i <list[index].size() ; i++){
-// 			a.Push_back(list[index][i]);
-// 		}
-// 	        send_data = mainget(a);							
-//  		send(sock,send_data,strlen(send_data), 0); 
-// 		list.clear();
-// 	}
-// 	if(chance == 0)
-// 		chance = 1;
-// 	else if(chance == 1)
-// 		chance = 0;
+	// 	int index;
+	// 	int max = INT_MIN;
+	// 	for(int i = 0 ; i < strength.size() ;i++){
+	// 		if(max < strength[i]){
+	// 			max = strength[i];
+	// 			index = i;
+	// 		}
+	// 	}
+	// 	domove(list[index],B,P);
+	// 	a.clear();
+	// 	for(int i = 0 ; i <list[index].size() ; i++){
+	// 		a.Push_back(list[index][i]);
+	// 	}
+	//         send_data = mainget(a);							
+ 	// 	send(sock,send_data,strlen(send_data), 0); 
+	// 	list.clear();
+	// }
+	if(chance == 0)
+		chance = 1;
+	else if(chance == 1)
+		chance = 0;
 
-// }
+}
 
 // If win ???
 // void Timer (int x)
@@ -193,6 +175,7 @@ int main(int argc,char **argv) {
 	}
 
 	getBoardStatus();
+	calc();
 	return 0;
 }
 
